@@ -1,0 +1,17 @@
+$indent: 8px;
+
+$media: 768px;
+
+:root {
+    --indent: 8px;
+    --navbar-height: 56px;
+    --container-gap: 16px;
+    --container-width: 992px;
+}
+
+@media (min-width: $media) {
+    :root {
+        --navbar-height: 64px;
+        --container-gap: 24px;
+    }
+}

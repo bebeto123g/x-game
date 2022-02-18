@@ -1,0 +1,13 @@
+@mixin minMediaDesktop {
+    @media (min-width: $media) {
+        @content;
+    }
+}
+
+@mixin maxMediaDesktop {
+    @media (max-width: $media - 1) {
+        @content;
+    }
+}
+
+

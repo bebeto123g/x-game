@@ -1,0 +1,55 @@
+@import '../../../styles/services/common.scss';
+
+$color: white;
+$burger-main: 10px;
+
+$burger-size: 3 * $burger-main;
+$burger-line-width: 2 * $burger-main;
+$burger-line-height: 2 * $burger-main/10;
+$burger-gap: $burger-main - $burger-line-height * 2;
+$transition-time: 0.3s;
+
+.burger-menu {
+    @include reset-button;
+    width: $burger-size;
+    height: $burger-size;
+    position: relative;
+    cursor: pointer;
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        width: $burger-line-width;
+        height: $burger-line-height;
+        background-color: $color;
+        transition: $transition-time ease;
+        top: 50%;
+        left: 15%;
+        z-index: 101;
+        border-radius: $burger-main / 10;
+    }
+
+    &::before {
+        transform: translateY(-$burger-gap);
+        box-shadow: 0 $burger-gap 0 $color;
+    }
+    &::after {
+        transform: translateY($burger-gap);
+    }
+
+    &.active {
+        &::before {
+            transform: translateY(0) rotate(45deg);
+            box-shadow: 0 0 0 $color;
+        }
+
+        &::after {
+            transform: translateY(0) rotate(-45deg);
+        }
+    }
+
+    &--visible {
+        display: block;
+    }
+}

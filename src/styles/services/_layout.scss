@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.app {
+    min-height: 200vh;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: var(--container-width);
+    box-sizing: content-box;
+    padding: 0 var(--container-gap);
+    margin: 0 auto;
+}
+
+.hide {
+    display: none !important;
+}
+
+.hide-mobile {
+    @media (max-width: $media - 1) {
+        display: none !important;
+    }
+}
+
+.hide-desktop {
+    @media (min-width: $media) {
+        display: none !important;
+    }
+}

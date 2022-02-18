@@ -1,0 +1,66 @@
+@import '../../styles/services/common.scss';
+
+.navbar {
+    background-color: cadetblue;
+    height: var(--navbar-height);
+    position: relative;
+
+    &__wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+    }
+
+    &__logo {
+        font-size: 24px;
+        color: white;
+        font-weight: bold;
+    }
+
+    &__navigate {
+        @include maxMediaDesktop {
+            position: absolute;
+            top: var(--navbar-height);
+            background-color: lighten(cadetblue, 5);
+            left: 200%;
+            right: -200%;
+            opacity: 0;
+            transition: 0.3s;
+
+            &.active {
+                left: 0;
+                right: 0;
+                opacity: 1;
+            }
+        }
+    }
+
+    &__link {
+        margin-right: $indent;
+        color: white;
+        text-decoration: none;
+        text-transform: uppercase;
+        &:last-child {
+            margin-right: 0;
+        }
+
+        @include maxMediaDesktop {
+            text-align: center;
+            display: block;
+            margin: 0 auto;
+            padding: $indent * 2 0;
+            border-bottom: 1px solid white;
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+    }
+
+    &__burger {
+        display: block;
+        @include minMediaDesktop {
+            display: none;
+        }
+    }
+}

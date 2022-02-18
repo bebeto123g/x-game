@@ -1,0 +1,37 @@
+@mixin reset-button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    &:hover,
+    &:focus {
+        outline: none;
+    }
+}
+
+@mixin ul-default {
+    list-style: none;
+    padding-left: 0;
+    padding-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+@mixin custom-scroll {
+    scrollbar-color: color(block, purple) transparent;
+    scrollbar-width: 8px;
+
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #fff;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: color(block, purple);
+        border-radius: $border-radius;
+        border: 1px solid azure;
+    }
+}
