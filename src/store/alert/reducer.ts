@@ -9,16 +9,21 @@ const initState = {
     message: null as string | null,
 };
 
+export const AlertTypes = {
+    show: 'ALERT_SHOW' as const,
+    hide: 'ALERT_HIDE' as const,
+};
+
 export function alertReducer(state = initState, action: AlertActionsType): typeof initState {
     switch (action.type) {
-        case 'ALERT_SHOW':
+        case AlertTypes.show:
             return {
                 isAlert: true,
-                variant: action.payload.variant,
-                message: action.payload.message,
+                variant: action.variant,
+                message: action.message,
             };
 
-        case 'ALERT_HIDE':
+        case AlertTypes.hide:
             return { ...initState };
 
         default:

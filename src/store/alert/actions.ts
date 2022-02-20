@@ -1,3 +1,4 @@
+import { AlertTypes } from './reducer';
 // export const showAlert = (variant: string, message: string) => {
 //     return (dispatch: any) => {
 //         const tid = setTimeout(() => {
@@ -16,15 +17,7 @@
 //     hideAlert: () => ({ type: 'ALERT_HIDE', payload: {} } as const),
 // };
 
-export const showAlert = (variant: string, message: string) => {
-    return {
-        type: 'ALERT_SHOW',
-        payload: { variant, message },
-    } as const;
-};
+// после AlertTypes as const, в actions писать as const видимо необязательно
 
-export const hideAlert = () => {
-    return {
-        type: 'ALERT_HIDE',
-    } as const;
-};
+export const showAlert = (variant: string, message: string) => ({ type: AlertTypes.show, variant, message });
+export const hideAlert = () => ({ type: AlertTypes.hide });

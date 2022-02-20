@@ -2,13 +2,13 @@ import React, { FC, lazy, LazyExoticComponent } from 'react';
 import Home from '../views/Home';
 
 export type RouteType = {
-    Element: FC | LazyExoticComponent<FC>, // отсебятина, не копировать
-    path: string,
-    isAuth: boolean,
-    title?: string,
-}
+    Element: FC | LazyExoticComponent<FC>; // отсебятина, не копировать
+    path: string;
+    isAuth: boolean;
+    title?: string;
+};
 
-export const routes: RouteType[] = [
+export const routes: Array<RouteType> = [
     {
         path: '/',
         Element: Home,

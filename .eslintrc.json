@@ -18,7 +18,7 @@
         "quotes": ["warn", "single", { "allowTemplateLiterals": true }],
         "no-debugger": "warn",
         "no-unused-vars": "warn",
-        "react/prop-types": "off",
+        "react/prop-types": "warn",
         "react/jsx-uses-react": "error",
         "react/jsx-uses-vars": "error",
         "react-hooks/rules-of-hooks": "error",
