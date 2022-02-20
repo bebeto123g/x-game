@@ -23,12 +23,9 @@ const Navbar = () => {
             <div className="container navbar__wrapper">
                 <div className="navbar__logo">X-GAME-O</div>
                 <div className={`navbar__navigate${isVisibleMenu ? ' active' : ''}`}>
-                    <NavLink to="/" className="navbar__link">
-                        Home
-                    </NavLink>
-                    <NavLink to="/about" className="navbar__link">
-                        About
-                    </NavLink>
+                    <NavLink to="/" className="navbar__link">Home</NavLink>
+                    <NavLink to="/about" className="navbar__link">About</NavLink>
+                    <NavLink to="/game" className="navbar__link">Game</NavLink>
                 </div>
                 <Burger callback={burgerHandler} classNames={'navbar__burger'} isActive={isVisibleMenu} />
             </div>

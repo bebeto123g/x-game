@@ -21,4 +21,10 @@ export const routes: Array<RouteType> = [
         isAuth: false,
         title: 'О проекте',
     },
+    {
+        path: '/game',
+        Element: lazy(() => import('../views/Game')),
+        isAuth: false,
+        title: 'Игра',
+    },
 ];
