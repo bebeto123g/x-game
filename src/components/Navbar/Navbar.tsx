@@ -1,5 +1,5 @@
 import React, { MouseEvent, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import Burger from '../UI/Burger/Burger';
 
 import './Navbar.scss';
@@ -12,7 +12,7 @@ const Navbar = () => {
     };
 
     const handlerClose = (event: MouseEvent<HTMLDivElement>) => {
-        const target = event.target as Element;
+        const target = event.target as HTMLElement;
         if (target.classList.contains('navbar__link')) {
             setVisibleMenu(false);
         }
@@ -21,7 +21,7 @@ const Navbar = () => {
     return (
         <div className="navbar" onClick={handlerClose}>
             <div className="container navbar__wrapper">
-                <div className="navbar__logo">X-GAME-O</div>
+                <Link to="/" className="navbar__logo">X-GAME-O</Link>
                 <div className={`navbar__navigate${isVisibleMenu ? ' active' : ''}`}>
                     <NavLink to="/" className="navbar__link">Home</NavLink>
                     <NavLink to="/about" className="navbar__link">About</NavLink>

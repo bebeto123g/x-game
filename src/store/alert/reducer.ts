@@ -1,4 +1,4 @@
-import { GetActionsType } from '../types';
+import { GetActionsType } from '../index';
 import * as actions from './actions';
 
 type AlertActionsType = GetActionsType<typeof actions>;
@@ -10,9 +10,9 @@ const initState = {
 };
 
 export const AlertTypes = {
-    show: 'ALERT_SHOW' as const,
-    hide: 'ALERT_HIDE' as const,
-};
+    show: 'ALERT_SHOW',
+    hide: 'ALERT_HIDE',
+} as const;
 
 export function alertReducer(state = initState, action: AlertActionsType): typeof initState {
     switch (action.type) {

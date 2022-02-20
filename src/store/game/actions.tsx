@@ -1,4 +1,12 @@
 import { GameTypes } from './reducer';
 
-export const setGame = (variant: string, message: string) => ({ type: GameTypes.set, variant, message });
-export const rollbacGAme = () => ({ type: GameTypes.rollbak });
+
+
+
+export const setCell = (id: string) => {
+    return {
+        type: GameTypes.setCell,
+    }
+}
+
+export const rollbacGame = () => ({ type: GameTypes.rollbak });
