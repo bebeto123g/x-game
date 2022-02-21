@@ -2,6 +2,7 @@ $indent: 8px;
 
 $media: 768px;
 
+// для теста, как ведут себя переменные глобально в медиа запросах
 :root {
     --indent: 8px;
     --navbar-height: 56px;

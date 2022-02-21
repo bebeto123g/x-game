@@ -3,10 +3,10 @@ import * as actions from './actions';
 
 type GametActionsType = GetActionsType<typeof actions>;
 
-const initState = {
-    userOne: { name: '', color: '', id: 0 },
-    userTwo: { name: '', color: '', id: 1 },
-};
+const initState = [
+    { name: 'Первый игрок', color: 'orange', id: 0 },
+    { name: 'Второй игрок', color: 'green', id: 1 },
+];
 
 /* логика
     по номеру ячейки записываем в матрицу, заносим ход в историю как номер ячейки,

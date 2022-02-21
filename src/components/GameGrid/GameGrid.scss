@@ -31,7 +31,7 @@
                 height: 2px;
                 width: 40px;
                 display: block;
-                background-color: rgb(233, 93, 0);
+                background-color: var(--user-color, orange);
                 position: absolute;
                 top: 50%;
                 left: 10px;
@@ -40,6 +40,20 @@
 
             &::after {
                 transform: rotate(-45deg);
+            }
+        }
+
+        &--0 {
+            &::before {
+                content: '';
+                height: 30px;
+                width: 30px;
+                display: block;
+                border: 2px solid var(--user-color, green);
+                position: absolute;
+                top: 22%;
+                left: 12px;
+                border-radius: 50%;
             }
         }
     }
