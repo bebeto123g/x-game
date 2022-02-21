@@ -1,13 +1,13 @@
 import React from 'react';
 import './Burger.scss';
 
-type PropTypeBurger = {
+type BurgerPropTypes = {
     callback: () => void;
     classNames?: string;
     isActive: boolean;
 };
 
-const Burger = ({ callback, classNames = '', isActive }: PropTypeBurger) => {
+const Burger = ({ callback, classNames = '', isActive }: BurgerPropTypes) => {
     return <button className={`burger-menu${isActive ? ' active' : ''} ${classNames}`} onClick={callback}></button>;
 };
 

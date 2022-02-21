@@ -1,0 +1,48 @@
+@import '../../../styles/services/common.scss';
+
+@mixin btn-variant($color) {
+    background-color: $color;
+    border: 1px solid $color;
+}
+
+.btn {
+    @include reset-button;
+    padding: $indent $indent * 2;
+    border-radius: $indent / 2;
+    transition: box-shadow .2s;
+    color: white;
+    text-shadow: 0 0 4px gray;
+    box-shadow: 0 0 4px 0px $secondary;
+    font-size: 16px;
+    @include btn-variant($secondary);
+
+    &:active {
+        box-shadow: none;
+    }
+
+    &-danger {
+        @include btn-variant($danger);
+    }
+
+    &-info {
+        @include btn-variant($info);
+    }
+
+    &-warning {
+        @include btn-variant($warning);
+    }
+
+    &-primary {
+        @include btn-variant($primary);
+    }
+
+    &-sm {
+        padding: $indent / 1.5 $indent;
+        font-size: 14px;
+    }
+
+    &-lg {
+        padding: $indent * 1.2 $indent * 2.5;
+        font-size: 18px;
+    }
+}

@@ -1,24 +1,13 @@
-import React, { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 import GameGrid from '../components/GameGrid/GameGrid';
-import { RootStateType } from '../store';
-import { startNextGame } from '../store/game/actions';
+import NextStepUser from '../components/NextStepUser/NextStepUser';
+import NextGameBtn from '../components/UX/NextGameBtn/NextGameBtn';
 
 const Game = () => {
-    const { game, users } = useSelector((state: RootStateType) => state);
-    const dispatch = useDispatch();
-
-    const handler = useCallback(() => dispatch(startNextGame()), [dispatch]);
-
     return (
         <>
-            <button className="next-game" onClick={handler}>
-                Следующий матч
-            </button>
-            <div className="step-user">
-                Чей ход: {users[game.userStep].name}
-            </div>
-
+            <NextGameBtn />
+            <NextStepUser />
             <GameGrid />
         </>
     );
