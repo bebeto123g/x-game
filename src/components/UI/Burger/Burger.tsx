@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import './Burger.scss';
 
 type BurgerPropTypes = {
@@ -7,8 +7,12 @@ type BurgerPropTypes = {
     isActive: boolean;
 };
 
-const Burger = ({ callback, classNames = '', isActive }: BurgerPropTypes) => {
-    return <button className={`burger-menu${isActive ? ' active' : ''} ${classNames}`} onClick={callback}></button>;
+const Burger: FC<BurgerPropTypes> = ({ callback, classNames = '', isActive }) => {
+    return (
+        <button className={`burger-menu${isActive ? ' active' : ''} ${classNames}`} onClick={callback}>
+            {''}
+        </button>
+    );
 };
 
 export default Burger;

@@ -9,7 +9,7 @@ type ButtonPropsTypes = {
     classNames?: string;
 };
 
-const Button = ({ variant, size, children, classNames, callback }: ButtonPropsTypes) => {
+const Button: FC<ButtonPropsTypes> = ({ variant, size, children, classNames, callback }) => {
     const variantClass = variant ? ` btn-${variant}` : '';
     const sizeClass = size ? ` btn-${size}` : '';
     const propClasses = classNames ? ` ${classNames}` : '';

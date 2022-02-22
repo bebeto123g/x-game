@@ -1,4 +1,3 @@
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import reduxThunk from 'redux-thunk';
 
@@ -17,12 +16,14 @@ declare global {
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const rootReducer = combineReducers({ alert, game, users });
 
-export const store = createStore(
-    combineReducers({ alert, game, users }),
-    composeEnhancers(applyMiddleware(reduxThunk))
-);
+export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(reduxThunk)));
 
-export type RootStateType = ReturnType<typeof store.getState>;
-export const useAppDispatch = () => useDispatch<typeof store.dispatch>();
-export const useAppSelector: TypedUseSelectorHook<RootStateType> = useSelector;
+export type RootReducerType = typeof rootReducer;
+// export type RootStateType = ReturnType<typeof store.getState>; костыль
+export type RootStateType = ReturnType<RootReducerType>;
+
+// export const useAppDispatch = () => useDispatch<typeof store.dispatch>();
+// костьль
+// export const useAppSelector: TypedUseSelectorHook<RootStateType> = useSelector;

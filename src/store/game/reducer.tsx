@@ -16,6 +16,7 @@ const initState = {
     firstUserInput: 0 as 0 | 1,
     gamesResult: [] as Array<null | 0 | 1>,
     maxGamesTutorialLength: 5, // сколько матчей в турнире
+    gameOver: false,
 };
 
 export const GameTypes = {
@@ -31,7 +32,8 @@ export function gameReducer(state = initState, action: GameActionsType): typeof 
                 ...state,
                 matrix: action.matrix,
                 stepHistory: [...state.stepHistory, action.id],
-                userStep: state.userStep === 1 ? 0 : 1,
+                userStep: action.gameOver ? state.userStep : state.userStep === 1 ? 0 : 1,
+                gameOver: action.gameOver,
             };
 
         case GameTypes.nextGame: {
@@ -46,6 +48,7 @@ export function gameReducer(state = initState, action: GameActionsType): typeof 
                 stepHistory: [],
                 firstUserInput,
                 userStep: firstUserInput,
+                gameOver: false,
             };
         }
 

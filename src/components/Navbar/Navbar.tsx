@@ -5,7 +5,7 @@ import Burger from '../UI/Burger/Burger';
 import './Navbar.scss';
 
 const Navbar = () => {
-    const [isVisibleMenu, setVisibleMenu] = useState(false);
+    const [isVisibleMenu, setVisibleMenu] = useState<boolean>(false);
 
     const burgerHandler = () => {
         setVisibleMenu((prev) => !prev);
@@ -21,11 +21,19 @@ const Navbar = () => {
     return (
         <div className="navbar" onClick={handlerClose}>
             <div className="container navbar__wrapper">
-                <Link to="/" className="navbar__logo">X-GAME-O</Link>
+                <Link to="/" className="navbar__logo">
+                    X-GAME-O
+                </Link>
                 <div className={`navbar__navigate${isVisibleMenu ? ' active' : ''}`}>
-                    <NavLink to="/" className="navbar__link">Home</NavLink>
-                    <NavLink to="/about" className="navbar__link">About</NavLink>
-                    <NavLink to="/game" className="navbar__link">Game</NavLink>
+                    <NavLink to="/" className="navbar__link">
+                        Home
+                    </NavLink>
+                    <NavLink to="/about" className="navbar__link">
+                        About
+                    </NavLink>
+                    <NavLink to="/game" className="navbar__link">
+                        Game
+                    </NavLink>
                 </div>
                 <Burger callback={burgerHandler} classNames={'navbar__burger'} isActive={isVisibleMenu} />
             </div>

@@ -1,13 +1,10 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { RootStateType } from '../../store';
+import { useAppSelector } from '../../hooks/state';
 
 const NextStepUser = () => {
-    const { game, users } = useSelector((state: RootStateType) => state);
+    const { game, users } = useAppSelector((state) => state);
 
-    return (
-        <div className="step-user">Чей ход: {users[game.userStep].name}</div>
-    );
+    return <div className="step-user">Чей ход: {users[game.userStep].name}</div>;
 };
 
 export default NextStepUser;

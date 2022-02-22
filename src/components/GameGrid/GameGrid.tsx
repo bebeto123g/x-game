@@ -27,6 +27,10 @@ const GameGrid = () => {
         dispatch(setCell({ matrix, id }));
     };
 
+    if (game.gameOver) {
+        return <h2>Игра окончена, победил {users[game.userStep].name}</h2>;
+    }
+
     return (
         <div className="game-grid" onClick={clickHandler}>
             {game.matrix.map((str, i) => {
@@ -36,7 +40,9 @@ const GameGrid = () => {
                     if (cell !== null) {
                         modify = ' game-grid__cell--' + (cell === 1 ? 'x' : '0');
                     }
-                    return <div className={`game-grid__cell${modify}`} data-id={id} key={id} data-cell={cell} />;
+                    return (
+                        <div className={`game-grid__cell${modify}`} data-id={id} key={id} data-cell={cell} />
+                    );
                 });
             })}
         </div>
