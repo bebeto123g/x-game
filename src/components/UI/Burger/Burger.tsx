@@ -9,9 +9,10 @@ type BurgerPropTypes = {
 
 const Burger: FC<BurgerPropTypes> = ({ callback, classNames = '', isActive }) => {
     return (
-        <button className={`burger-menu${isActive ? ' active' : ''} ${classNames}`} onClick={callback}>
-            {''}
-        </button>
+        <button
+            className={`burger-menu${isActive ? ' active' : ''} ${classNames}`}
+            onClick={callback}
+        ></button>
     );
 };
 
