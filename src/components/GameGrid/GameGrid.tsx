@@ -19,12 +19,8 @@ const GameGrid = () => {
 
         target.style.setProperty('--user-color', users[game.userStep].color);
         const cellValue = game.firstUserInput === game.userStep ? 1 : 0;
-        const matrix = [...game.matrix];
-        const [i, j] = id.split('').map(Number);
-        matrix[i][j] = cellValue;
         target.dataset.cell = String(cellValue);
-
-        dispatch(setCell({ matrix, id }));
+        dispatch(setCell(id, cellValue));
     };
 
     if (game.gameOver) {

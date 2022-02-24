@@ -6,7 +6,7 @@ import NextGameBtn from '../components/UX/NextGameBtn/NextGameBtn';
 const Game = () => {
     return (
         <>
-            <NextGameBtn />
+            <NextGameBtn variant={'danger'}>Следующий матч</NextGameBtn>
             <NextStepUser />
             <GameGrid />
         </>

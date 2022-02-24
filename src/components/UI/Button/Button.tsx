@@ -1,11 +1,10 @@
 import React, { FC } from 'react';
 import './Button.scss';
 
-type ButtonPropsTypes = {
+export type ButtonPropsTypes = {
     variant?: 'danger' | 'info' | 'warning' | 'primary';
     size?: 'sm' | 'lg';
-    callback: Function;
-    children?: string | FC;
+    callback: () => void;
     classNames?: string;
 };
 

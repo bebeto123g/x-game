@@ -1,5 +1,5 @@
 import { GetActionsType } from '../index';
-import * as actions from './actions';
+import { actions } from './actions';
 
 export type GameActionsType = GetActionsType<typeof actions>;
 export type GameMatrixType = Array<Array<null | 0 | 1>>;

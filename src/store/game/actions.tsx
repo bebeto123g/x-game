@@ -1,34 +1,26 @@
-import { GameMatrixType, GameTypes } from './reducer';
+import { ThunkAction } from 'redux-thunk';
+import { GameActionsType, GameMatrixType, GameTypes } from './reducer';
+import { validateGameOver } from '../../services/helpers';
+import { RootStateType } from '../index';
 
-type GameSetStep = {
+type GameSetStepProps = {
     matrix: GameMatrixType;
     id: string;
 };
 
-// потом сделать чет покрасивее
-function validateGameOver(matrix: GameMatrixType): boolean {
-    const x =
-        matrix[1][1] !== null &&
-        ((matrix[1][1] === matrix[0][0] && matrix[1][1] === matrix[2][2]) ||
-            (matrix[1][1] === matrix[0][2] && matrix[1][1] === matrix[2][0]));
-    if (x) return true;
+type GameThunkActionType = ThunkAction<void, RootStateType, any, GameActionsType>;
+// type GameThunkAction = ThunkAction<Promise<void>, RootStateType, "extraArguments", any>; для async await dispatch
 
-    const vertical =
-        (matrix[0][0] !== null && matrix[0][0] === matrix[1][0] && matrix[0][0] === matrix[2][0]) ||
-        (matrix[0][1] !== null && matrix[0][1] === matrix[1][1] && matrix[0][1] === matrix[2][1]) ||
-        (matrix[0][2] !== null && matrix[0][2] === matrix[1][2] && matrix[0][2] === matrix[2][2]);
-    if (vertical) return true;
+export const setCell = (id: string, value: 0 | 1): GameThunkActionType => {
+    return (dispatch, getState) => {
+        const matrix = [...getState().game.matrix];
+        const [i, j] = id.split('').map(Number);
+        matrix[i][j] = value;
+        dispatch(setMatrix({ matrix, id }));
+    };
+};
 
-    const horizont =
-        (matrix[0][0] !== null && matrix[0][0] === matrix[0][1] && matrix[0][0] === matrix[0][2]) ||
-        (matrix[1][0] !== null && matrix[1][0] === matrix[1][1] && matrix[1][1] === matrix[1][2]) ||
-        (matrix[2][0] !== null && matrix[2][0] === matrix[2][1] && matrix[2][0] === matrix[2][2]);
-    if (horizont) return true;
-
-    return false;
-}
-
-export const setCell = ({ matrix, id }: GameSetStep) => {
+export const setMatrix = ({ matrix, id }: GameSetStepProps) => {
     const gameOver = validateGameOver(matrix);
     return { type: GameTypes.setCell, matrix, id, gameOver };
 };
@@ -38,3 +30,9 @@ export const startNextGame = () => {
 };
 
 export const clearGame = () => ({ type: GameTypes.clear });
+
+export const actions = {
+    setMatrix,
+    startNextGame,
+    clearGame,
+};
