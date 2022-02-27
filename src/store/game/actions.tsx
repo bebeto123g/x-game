@@ -9,7 +9,7 @@ type GameSetStepProps = {
 };
 
 type GameThunkActionType = ThunkAction<void, RootStateType, any, GameActionsType>;
-// type GameThunkAction = ThunkAction<Promise<void>, RootStateType, "extraArguments", any>; для async await dispatch
+// type GameThunkAction = ThunkAction<Promise<void>, RootStateType, "extraArguments", GameActionsType>; для async await dispatch
 
 export const setCell = (id: string, value: 0 | 1): GameThunkActionType => {
     return (dispatch, getState) => {

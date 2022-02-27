@@ -4,8 +4,8 @@ import * as actions from './actions';
 type GametActionsType = GetActionsType<typeof actions>;
 
 const initState = [
-    { name: 'Первый игрок', color: 'orange', id: 0 },
-    { name: 'Второй игрок', color: 'green', id: 1 },
+    { name: 'Первый игрок', color: 'orange', id: 0 as 0 | 1 },
+    { name: 'Второй игрок', color: 'green', id: 1 as 0 | 1 },
 ];
 
 // имена нужно будет записывать вначале, так же можно будет выбрать цвет
@@ -34,11 +34,10 @@ export function usersReducer(state = initState, action: GametActionsType): typeo
                 ...state[action.id],
                 name: action.name,
                 color: action.color || newState[action.id].color,
-            }
+            };
 
-            return [ ...newState];
+            return [...newState];
         }
-
 
         case UsersTypes.setName:
             return { ...initState };

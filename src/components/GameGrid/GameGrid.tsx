@@ -1,6 +1,6 @@
 import React, { MouseEvent } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootStateType } from '../../store';
+import { useDispatch } from 'react-redux';
+import { useAppSelector } from '../../store';
 import { setCell } from '../../store/game/actions';
 import './GameGrid.scss';
 
@@ -8,7 +8,7 @@ import './GameGrid.scss';
 //
 
 const GameGrid = () => {
-    const { game, users } = useSelector((state: RootStateType) => state);
+    const { game, users } = useAppSelector((state) => state);
     const dispatch = useDispatch();
 
     const clickHandler = (event: MouseEvent<HTMLDivElement>) => {
