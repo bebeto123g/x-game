@@ -1,22 +1,44 @@
-import React, { FC, FocusEvent } from 'react';
+import React, { ChangeEvent, FC, FocusEvent, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useAppSelector } from '../../store';
+import { setUser } from '../../store/users/actions';
 import './InputNamePlayer.scss';
 
-interface InputNamePlayerType {
-    name: string;
-    id: 0 | 1;
-    callback: (e: FocusEvent<HTMLInputElement>) => void;
-}
+const InputNamePlayer: FC<{ id: 0 | 1 }> = ({ id }) => {
+    const users = useAppSelector((state) => state.users);
+    const dispatch = useDispatch();
+    const [userName, setUserName] = useState(users[id].name);
 
-const InputNamePlayer: FC<InputNamePlayerType> = ({ name, id, callback }) => {
+    const handlerBlur = (e: FocusEvent<HTMLInputElement>) => {
+        if (userName === users[id].name) return;
+        if (!userName) {
+            setUserName(users[id].name);
+            return;
+        }
+        dispatch(setUser(id, userName));
+    };
+
+    const handlerInput = (e: ChangeEvent<HTMLInputElement>) => {
+        setUserName(e.target.value);
+    };
+
     return (
-        <input
-            className="input-player"
-            type="text"
-            name={String(id)}
-            id={String(id)}
-            defaultValue={name}
-            onBlur={callback}
-        />
+        <>
+            <div className="input-player">
+                <label htmlFor={String(id)} className="input-player__label">
+                    Введите имя игрока
+                </label>
+                <input
+                    className="input-player__input"
+                    type="text"
+                    name={String(id)}
+                    id={String(id)}
+                    onBlur={handlerBlur}
+                    onChange={handlerInput}
+                    value={userName}
+                />
+            </div>
+        </>
     );
 };
 

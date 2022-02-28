@@ -1,3 +1,19 @@
 .input-player {
+    margin: 10px 0;
+    &__label {
+        display: block;
+    }
+
+    &__input {
+        height: 46px;
+        padding: 4px 12px;
+        font-size: 24px;
+        border: none;
+        border-bottom: 1px solid gray;
+        &:active, &:focus {
+            outline: none;
+            border-bottom: 1px solid red;
+        }
+    }
 
 }
