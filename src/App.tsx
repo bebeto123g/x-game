@@ -7,9 +7,7 @@ const App = () => {
     return (
         <div className="app">
             <Navbar />
-            <div className="container">
-                <SwitchRoutes />
-            </div>
+            <SwitchRoutes />
         </div>
     );
 };

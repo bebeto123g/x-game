@@ -1,14 +1,15 @@
 import { ThunkAction } from 'redux-thunk';
 import { GameActionsType, GameMatrixType, GameTypes } from './reducer';
 import { validateGameOver } from '../../services/helpers';
-import { RootStateType } from '../index';
+import { CreateThunkActionType } from '../index';
 
 type GameSetStepProps = {
     matrix: GameMatrixType;
     id: string;
 };
 
-type GameThunkActionType = ThunkAction<void, RootStateType, any, GameActionsType>;
+type GameThunkActionType = CreateThunkActionType<GameActionsType>;
+// type GameThunkActionType = ThunkAction<void, RootStateType, any, GameActionsType>;
 // type GameThunkAction = ThunkAction<Promise<void>, RootStateType, "extraArguments", GameActionsType>; для async await dispatch
 
 export const setCell = (id: string, value: 0 | 1): GameThunkActionType => {

@@ -4,12 +4,16 @@ import ButtonLink from '../components/UI/Button/ButtonLink';
 
 const Home = () => {
     return (
-        <>
-            <InputNamePlayer id={0} />
-            <InputNamePlayer id={1} />
+        <div className="home-page page">
+            <div className="container">
+                <InputNamePlayer id={0} />
+                <InputNamePlayer id={1} />
 
-            <ButtonLink to={'/game'}>К игре</ButtonLink>
-        </>
+                <ButtonLink to={'/game'} variant="primary" classNames={'home-page__start-btn'}>
+                    К игре
+                </ButtonLink>
+            </div>
+        </div>
     );
 };
 
