@@ -26,10 +26,7 @@ export const setMatrix = ({ matrix, id }: GameSetStepProps) => {
     return { type: GameTypes.setCell, matrix, id, gameOver };
 };
 
-export const startNextGame = () => {
-    return { type: GameTypes.nextGame };
-};
-
+export const startNextGame = () => ({ type: GameTypes.nextGame });
 export const clearGame = () => ({ type: GameTypes.clear });
 
 export const actions = {
