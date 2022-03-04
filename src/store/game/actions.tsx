@@ -1,11 +1,12 @@
 import { ThunkAction } from 'redux-thunk';
 import { GameActionsType, GameMatrixType, GameTypes } from './reducer';
-import { validateGameOver } from '../../services/helpers';
+import { validateDiagonal, } from '../../services/helpers';
 import { CreateThunkActionType } from '../index';
 
 type GameSetStepProps = {
     matrix: GameMatrixType;
     id: string;
+    value: 0 | 1
 };
 
 type GameThunkActionType = CreateThunkActionType<GameActionsType>;
@@ -14,15 +15,15 @@ type GameThunkActionType = CreateThunkActionType<GameActionsType>;
 
 export const setCell = (id: string, value: 0 | 1): GameThunkActionType => {
     return (dispatch, getState) => {
-        const matrix = [...getState().game.matrix];
+        const { matrix } = {...getState().game};
         const [i, j] = id.split('').map(Number);
         matrix[i][j] = value;
-        dispatch(setMatrix({ matrix, id }));
+        dispatch(setMatrix({ matrix, id, value }));
     };
 };
 
-export const setMatrix = ({ matrix, id }: GameSetStepProps) => {
-    const gameOver = validateGameOver(matrix);
+export const setMatrix = ({ matrix, id, value }: GameSetStepProps) => {
+    const gameOver = validateDiagonal(matrix, value);
     return { type: GameTypes.setCell, matrix, id, gameOver };
 };
 
