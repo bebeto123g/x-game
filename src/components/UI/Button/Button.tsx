@@ -5,15 +5,27 @@ export type ButtonPropsTypes = {
     size?: 'sm' | 'lg';
     callback: () => void;
     classNames?: string;
+    disabled?: boolean;
 };
 
-const Button: FC<ButtonPropsTypes> = ({ variant, size, children, classNames, callback }) => {
+const Button: FC<ButtonPropsTypes> = ({
+    variant,
+    size,
+    disabled = false,
+    children,
+    classNames,
+    callback,
+}) => {
     const variantClass = variant ? ` btn-${variant}` : '';
     const sizeClass = size ? ` btn-${size}` : '';
     const propClasses = classNames ? ` ${classNames}` : '';
 
     return (
-        <button className={`btn${variantClass}${sizeClass}${propClasses}`} onClick={() => callback()}>
+        <button
+            className={`btn${variantClass}${sizeClass}${propClasses}`}
+            onClick={() => callback()}
+            disabled={disabled}
+        >
             {children}
         </button>
     );

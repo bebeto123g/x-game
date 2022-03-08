@@ -2,21 +2,6 @@ $indent: 8px;
 
 $media: 768px;
 
-// для теста, как ведут себя переменные глобально в медиа запросах
-:root {
-    --indent: 8px;
-    --navbar-height: 56px;
-    --container-gap: 16px;
-    --container-width: 992px;
-}
-
-@media (min-width: $media) {
-    :root {
-        --navbar-height: 64px;
-        --container-gap: 24px;
-    }
-}
-
 $primary: cadetblue;
 $warning: #ffca2c;
 $danger: #bb2d3b;

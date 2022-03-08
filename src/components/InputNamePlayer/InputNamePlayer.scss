@@ -1,18 +1,56 @@
+@import '../../styles/services/common.scss';
+
 .input-player {
-    margin-bottom: 10px;
-    &__label {
-        display: block;
+    margin-bottom: $indent * 3;
+
+    @include minMediaDesktop {
+        margin-bottom: $indent * 4;
     }
 
-    &__input {
-        height: 46px;
+    &__label {
+        display: block;
+        margin-bottom: $indent * 1;
+    }
+
+    &__inputs {
+        display: grid;
+        grid-template-columns: 1fr 32px;
+        column-gap: $indent * 2;
+        max-width: 100%;
+
+        @include minMediaDesktop {
+            grid-template-columns: 1fr 46px;
+            column-gap: $indent * 3;
+        }
+    }
+
+    &__name {
+        height: 32px;
         padding: 4px 12px;
-        font-size: 24px;
+        font-size: 18px;
         border: none;
         border-bottom: 1px solid gray;
+
         &:active, &:focus {
             outline: none;
             border-bottom: 1px solid red;
+        }
+
+        @include minMediaDesktop {
+            font-size: 24px;
+            height: 46px;
+        }
+    }
+
+    &__color {
+        width: 32px;
+        height: 32px;
+        border: none;
+        background-color: $primary;
+
+        @include minMediaDesktop {
+            width: 46px;
+            height: 46px;
         }
     }
 

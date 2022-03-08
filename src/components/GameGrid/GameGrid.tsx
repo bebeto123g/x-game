@@ -1,15 +1,16 @@
-import React, { MouseEvent } from 'react';
+import React, { MouseEvent, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../store';
 import { setCell } from '../../store/game/actions';
 import './GameGrid.scss';
-
-// от isCross зависит UI
-//
+import { log } from 'util';
+import GameWinnerAlert from './GameWinnerAlert';
 
 const GameGrid = () => {
     const { game, users } = useAppSelector((state) => state);
     const dispatch = useDispatch();
+
+    const isGameClassDisabled = game.gameOver ? ' game-grid--disabled' : '';
 
     const clickHandler = (event: MouseEvent<HTMLDivElement>) => {
         const target = event.target as HTMLElement;
@@ -23,21 +24,23 @@ const GameGrid = () => {
         dispatch(setCell(id, cellValue));
     };
 
-    if (game.gameOver) {
-        return <h2>Игра окончена, победил {users[game.userStep].name}</h2>;
-    }
-
     return (
-        <div className="game-grid" onClick={clickHandler}>
+        <div className={`game-grid${isGameClassDisabled}`} onClick={clickHandler}>
             {game.matrix.map((str, i) => {
                 return str.map((cell, j) => {
                     const id = `${i}${j}`;
-                    let modify = '';
-                    if (cell !== null) {
-                        modify = ' game-grid__cell--' + (cell === 1 ? 'x' : '0');
-                    }
+                    const modifyCellType =
+                        cell !== null ? ' game-grid__cell--' + (cell === 1 ? 'x' : '0') : '';
+                    const modifyCellWinner =
+                        game.gameOver && game.winnerLine.includes(id) ? ' game-grid__cell--winner' : '';
+
                     return (
-                        <div className={`game-grid__cell${modify}`} data-id={id} key={id} data-cell={cell} />
+                        <div
+                            className={`game-grid__cell${modifyCellType}${modifyCellWinner}`}
+                            data-id={id}
+                            key={id}
+                            data-cell={cell}
+                        />
                     );
                 });
             })}

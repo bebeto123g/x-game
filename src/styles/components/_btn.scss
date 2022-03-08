@@ -7,7 +7,7 @@
     @include reset-button;
     padding: $indent $indent * 2;
     border-radius: $indent / 2;
-    transition: box-shadow .2s;
+    transition: box-shadow .2s, background-color 0.5s;
     color: white;
     text-shadow: 0 0 4px gray;
     box-shadow: 0 0 4px 0 $secondary;
@@ -17,6 +17,11 @@
 
     &:active {
         box-shadow: none;
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        @include btn-variant($secondary);
     }
 
     &-danger {

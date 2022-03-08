@@ -1,3 +1,17 @@
+:root {
+    --indent: 8px;
+    --navbar-height: 56px;
+    --container-gap: 16px;
+    --container-width: 992px;
+}
+
+@media (min-width: $media) {
+    :root {
+        --navbar-height: 64px;
+        --container-gap: 24px;
+    }
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -18,7 +32,7 @@
 
 .page {
     min-height: calc(100vh - var(--navbar-height));
-    padding-top: $indent * 2;
+    padding: $indent * 2 0;
 }
 
 .hide {

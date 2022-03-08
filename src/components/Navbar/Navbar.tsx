@@ -31,9 +31,6 @@ const Navbar = () => {
                     <NavLink to="/about" className="navbar__link">
                         About
                     </NavLink>
-                    <NavLink to="/game" className="navbar__link">
-                        Game
-                    </NavLink>
                 </div>
                 <Burger callback={burgerHandler} classNames={'navbar__burger'} isActive={isVisibleMenu} />
             </div>

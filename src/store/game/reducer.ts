@@ -1,10 +1,10 @@
 import { GetActionsType } from '../index';
-import { actions } from './actions';
+import actions from './actions';
 
 export type GameActionsType = GetActionsType<typeof actions>;
-export type GameMatrixType = Array<Array<null | 0 | 1>>;
+export type GameMatrixType = Array<Array<null | 0 | 1>>; // в матрице всегда 1 это крестик, а 0 это 0
+export type GameOverType = 'col' | 'row' | 'toLeft' | 'toRight' | 'draw' | false;
 
-// в матрице всегда 1 это крестик, а 0 это 0
 const initState = {
     matrix: [
         [null, null, null],
@@ -16,7 +16,8 @@ const initState = {
     firstUserInput: 0 as 0 | 1,
     gamesResult: [] as Array<null | 0 | 1>,
     maxGamesTutorialLength: 5, // сколько матчей в турнире
-    gameOver: false,
+    gameOver: false as GameOverType,
+    winnerLine: [] as Array<string>,
 };
 
 export const GameTypes = {
@@ -27,15 +28,17 @@ export const GameTypes = {
 
 export function gameReducer(state = initState, action: GameActionsType): typeof initState {
     switch (action.type) {
-        case GameTypes.setCell:
+        case GameTypes.setCell: {
+            const stepHistory = [...state.stepHistory, action.id];
             return {
                 ...state,
                 matrix: action.matrix,
-                stepHistory: [...state.stepHistory, action.id],
+                stepHistory,
                 userStep: action.gameOver ? state.userStep : state.userStep === 1 ? 0 : 1,
-                gameOver: action.gameOver,
+                gameOver: !action.gameOver && stepHistory.length > 8 ? 'draw' : action.gameOver,
+                winnerLine: action.winnerLine,
             };
-
+        }
         case GameTypes.nextGame: {
             const firstUserInput = state.firstUserInput === 1 ? 0 : 1;
             return {
@@ -49,6 +52,7 @@ export function gameReducer(state = initState, action: GameActionsType): typeof 
                 firstUserInput,
                 userStep: firstUserInput,
                 gameOver: false,
+                winnerLine: [],
             };
         }
 

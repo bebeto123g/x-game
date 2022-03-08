@@ -1,0 +1,11 @@
+@import '../../styles/services/common.scss';
+
+.step-user {
+    text-align: center;
+    font-size: 20px;
+
+    &__name {
+        margin-left: 10px;
+        text-shadow: 2px 2px 6px $primary;
+    }
+}

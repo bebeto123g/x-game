@@ -1,12 +1,10 @@
 import { Action, applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import reduxThunk, { ThunkAction } from 'redux-thunk';
+import { TypedUseSelectorHook, useSelector } from 'react-redux';
 
 import { alertReducer as alert } from './alert/reducer';
 import { gameReducer as game } from './game/reducer';
 import { usersReducer as users } from './users/reducer';
-import { TypedUseSelectorHook, useSelector } from 'react-redux';
-
-
 
 // для использования Redux-devTools
 declare global {

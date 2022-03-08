@@ -1,14 +1,12 @@
 import { GetActionsType } from '../index';
-import * as actions from './actions';
+import actions from './actions';
 
-type GametActionsType = GetActionsType<typeof actions>;
+type GameActionsType = GetActionsType<typeof actions>;
 
 const initState = [
-    { name: 'Первый игрок', color: 'orange', id: 0 as 0 | 1 },
-    { name: 'Второй игрок', color: 'green', id: 1 as 0 | 1 },
+    { name: 'Первый игрок', color: '#d07607', id: 0 as 0 | 1 },
+    { name: 'Второй игрок', color: '#10b305', id: 1 as 0 | 1 },
 ];
-
-// имена нужно будет записывать вначале, так же можно будет выбрать цвет
 
 /* логика
     по номеру ячейки записываем в матрицу, заносим ход в историю как номер ячейки,
@@ -22,25 +20,31 @@ const initState = [
 */
 
 export const UsersTypes = {
-    set: 'USER_SET',
-    setName: 'USER_NAME',
+    setUserName: 'SET_USER_NAME',
+    setUserColor: 'SET_USER_COLOR',
 } as const;
 
-export function usersReducer(state = initState, action: GametActionsType): typeof initState {
+export function usersReducer(state = initState, action: GameActionsType): typeof initState {
     switch (action.type) {
-        case UsersTypes.set: {
+        case UsersTypes.setUserName: {
             const newState = [...state];
             newState[action.id] = {
                 ...state[action.id],
                 name: action.name,
-                color: action.color || newState[action.id].color,
             };
 
             return [...newState];
         }
 
-        case UsersTypes.setName:
-            return { ...initState };
+        case UsersTypes.setUserColor: {
+            const newState = [...state];
+            newState[action.id] = {
+                ...state[action.id],
+                color: action.color,
+            };
+
+            return [...newState];
+        }
 
         default:
             return state;

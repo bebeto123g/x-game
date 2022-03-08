@@ -1,7 +1,8 @@
 .home-page {
-    background: rgb(212, 214, 219);
+
     &__start-btn {
         margin-top: $indent * 2;
         display: block;
+        font-size: 24px;
     }
 }

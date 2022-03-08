@@ -1,12 +1,11 @@
-import { ThunkAction } from 'redux-thunk';
-import { GameActionsType, GameMatrixType, GameTypes } from './reducer';
-import { validateDiagonal, } from '../../services/helpers';
+import { GameActionsType, GameMatrixType, GameOverType, GameTypes } from './reducer';
+import { getWinnerLine, validateDiagonal, validateLines } from '../../services/validateGame';
 import { CreateThunkActionType } from '../index';
 
 type GameSetStepProps = {
     matrix: GameMatrixType;
     id: string;
-    value: 0 | 1
+    value: 0 | 1;
 };
 
 type GameThunkActionType = CreateThunkActionType<GameActionsType>;
@@ -15,7 +14,7 @@ type GameThunkActionType = CreateThunkActionType<GameActionsType>;
 
 export const setCell = (id: string, value: 0 | 1): GameThunkActionType => {
     return (dispatch, getState) => {
-        const { matrix } = {...getState().game};
+        const { matrix } = { ...getState().game };
         const [i, j] = id.split('').map(Number);
         matrix[i][j] = value;
         dispatch(setMatrix({ matrix, id, value }));
@@ -23,14 +22,23 @@ export const setCell = (id: string, value: 0 | 1): GameThunkActionType => {
 };
 
 export const setMatrix = ({ matrix, id, value }: GameSetStepProps) => {
-    const gameOver = validateDiagonal(matrix, value);
-    return { type: GameTypes.setCell, matrix, id, gameOver };
+    let gameOver: GameOverType = validateDiagonal(matrix, value);
+    let winnerLine: Array<string> = [];
+    if (!gameOver) {
+        gameOver = validateLines(matrix, value);
+    }
+
+    if (gameOver) {
+        winnerLine = getWinnerLine(id, gameOver);
+    }
+
+    return { type: GameTypes.setCell, matrix, id, gameOver, winnerLine };
 };
 
 export const startNextGame = () => ({ type: GameTypes.nextGame });
 export const clearGame = () => ({ type: GameTypes.clear });
 
-export const actions = {
+export default {
     setMatrix,
     startNextGame,
     clearGame,
