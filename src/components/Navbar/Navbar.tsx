@@ -1,4 +1,4 @@
-import React, { MouseEvent, useState } from 'react';
+import React, { MouseEvent, MouseEventHandler, useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import Burger from '../UI/Burger/Burger';
 
@@ -11,7 +11,8 @@ const Navbar = () => {
         setVisibleMenu((prev) => !prev);
     };
 
-    const handlerClose = (event: MouseEvent<HTMLDivElement>) => {
+    // const handlerClose = (event: MouseEvent<HTMLDivElement>) => {
+    const handlerClose: MouseEventHandler<HTMLDivElement> = (event) => {
         const target = event.target as HTMLElement;
         if (target.classList.contains('navbar__link')) {
             setVisibleMenu(false);

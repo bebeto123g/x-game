@@ -5,6 +5,7 @@ import { TypedUseSelectorHook, useSelector } from 'react-redux';
 import { alertReducer as alert } from './alert/reducer';
 import { gameReducer as game } from './game/reducer';
 import { usersReducer as users } from './users/reducer';
+import { placeholderReducer as placeholder } from './placeholder/reducer';
 
 // для использования Redux-devTools
 declare global {
@@ -14,7 +15,7 @@ declare global {
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const rootReducer = combineReducers({ alert, game, users });
+const rootReducer = combineReducers({ alert, game, users, placeholder });
 
 // пока все костыли, типы и хуки в куче. разобрать после типизации диспатч
 export type RootReducerType = typeof rootReducer;
